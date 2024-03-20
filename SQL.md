@@ -14,11 +14,11 @@
 
 **DDL 종류**
 
--   CREATE : 새로운 테이블 생성
--   ALTER : 기존 테이블 구조 변경
--   DROP : 기존 테이블 삭제
--   TRUNCATE : 기존 테이블 초기화
--   RENAME : 테이블 이름 변경
+- CREATE : 새로운 테이블 생성
+- ALTER : 기존 테이블 구조 변경
+- DROP : 기존 테이블 삭제
+- TRUNCATE : 기존 테이블 초기화
+- RENAME : 테이블 이름 변경
 
 **DML(Data Manipulation Language, 데이터 조작어)**
 
@@ -26,10 +26,10 @@
 
 **DML 종류**
 
--   SELECT : 저장된 데이터 조회(DQL로 분류할 수도 있다)
--   INSERT : 데이터 추가
--   DELETE : 데이터 삭제
--   UPDATE : 데이터 수정
+- SELECT : 저장된 데이터 조회(DQL로 분류할 수도 있다)
+- INSERT : 데이터 추가
+- DELETE : 데이터 삭제
+- UPDATE : 데이터 수정
 
 **DCL(Data Control Language, 데이터 제어어)**
 
@@ -39,8 +39,8 @@
 
 **DCL 종류**
 
--   GRANT : 권한 부여
--   REVOKE : 권한 회수
+- GRANT : 권한 부여
+- REVOKE : 권한 회수
 
 **DQL(Data Query Language, 데이터 질의어)**
 
@@ -48,7 +48,7 @@
 
 **DQL 종류**
 
--   SELECT : 저장된 데이터 조회
+- SELECT : 저장된 데이터 조회
 
 **TCL(Transaction Control Language, 트랜잭션 제어어)**
 
@@ -60,7 +60,6 @@ DCL개념 에 TCL이 포함되는것(내 안에 너 있다)
 
 **TCL 종류**
 
--   COMMIT : 작업 완료한 데이터를 db에 영구적으로 반영
--   ROLLBACK : 작업 시작 이전으로 되돌린다
--   SAVEPOINT : 어느 지점을 세이브포인트로 정하고, ROLLBACK을 통해 되돌리기 가능
-
+- COMMIT : 작업 완료한 데이터를 db에 영구적으로 반영
+- ROLLBACK : 작업 시작 이전으로 되돌린다
+- SAVEPOINT : 어느 지점을 세이브포인트로 정하고, ROLLBACK을 통해 되돌리기 가능
