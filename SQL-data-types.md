@@ -73,19 +73,19 @@ MySQL 에서는 DECIMAL 과 NUMARIC은 동일하다고 보면 된다DECIMAL 자�
 
 | 데이터 타입 |  | 바이트 수 | 설명 |
 | --- | --- | --- | --- |
-| CHAR(n) |  | 1 ~ 255byte | 고정 길이 문자형   ex)CHAR(4) => 'a   ',  '바나나 ' |
-| VARCHAR(n) |  | 1 ~ 65535byte | 가변 길이 문자형, 저장될 문자열의 길이 만큼만 저장  |
-| TINYTEXT |  | 1 ~ 255byte | 255 크기의 TEXT 데이터 값 |
-| TEXT |  | 1 ~ 65535byte | N 크기의 TEXT 데이터 값 |
-| MEDIUMTEXT |  | 1 ~ 16777215byte | 16777215 크기의 TEXT 데이터 값 |
-| LONGTEXT |  | 1 ~ 4294967295byte | 최대 4GB 크기의 TEXT 데이터 값 |
-| BINARY(n) |  | 1 ~ 255byte | 고정 길이의 이진 데이터 값 |
-| VARBINARY(n) |  | 1 ~ 255byte | 가변 길이의 이진 데이터 값 |
+| CHAR(n) | 1 ~ 255byte | 고정 길이 문자형   ex)CHAR(4) => 'a   ',  '바나나 ' |
+| VARCHAR(n)| 1 ~ 65535byte | 가변 길이 문자형, 저장될 문자열의 길이 만큼만 저장  |
+| TINYTEXT | 1 ~ 255byte | 255 크기의 TEXT 데이터 값 |
+| TEXT | 1 ~ 65535byte | N 크기의 TEXT 데이터 값 |
+| MEDIUMTEXT | 1 ~ 16777215byte | 16777215 크기의 TEXT 데이터 값 |
+| LONGTEXT | 1 ~ 4294967295byte | 최대 4GB 크기의 TEXT 데이터 값 |
+| BINARY(n) |  1 ~ 255byte | 고정 길이의 이진 데이터 값 |
+| VARBINARY(n) | 1 ~ 255byte | 가변 길이의 이진 데이터 값 |
 | BLOB | TINYBLOB | 1 ~ 255byte | 255 크기의 BLOB 데이터 값 |
 | MEDIUMBLOB | 1 ~ 16777215byte | 16777215 크기의 BLOB 데이터 값 |
 | LONGBLOB | 1 ~ 4294967295 | 최대 4GB 크기의 BLOB 데이터 값 |
-| ENUM('value1','value2',...) |  | 1 또는 2byte | 최대 65535개의 열거형 데이터 값 |
-| SET( 'value1','value2',...) |  | 1, 2, 3, 4, 8byte | 최대 64개의 중복되지 않는 데이터 값 |
+| ENUM('value1','value2',...) | 1 또는 2byte | 최대 65535개의 열거형 데이터 값 |
+| SET( 'value1','value2',...) | 1, 2, 3, 4, 8byte | 최대 64개의 중복되지 않는 데이터 값 |
 
 #### **CHAR**
 
