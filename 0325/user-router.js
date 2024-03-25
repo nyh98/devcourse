@@ -1,5 +1,6 @@
 const express = require('express');
 const { getHash, isValidateLogin, isCheckUser } = require('./utils');
+
 const router = express.Router();
 
 const db = new Map();
@@ -9,6 +10,8 @@ db.set(id++, { userId: 'test1', pwd: 'aaa', nickName: '가' });
 //로그인
 router.post('/login', (req, res) => {
   const { userId, pwd } = req.body;
+  const cookie = req.cookies;
+  console.log(cookie);
   //데이터 검증
   if (!userId || !pwd) {
     return res.status(400).send('정보를 정확히 입력하세요');
@@ -19,7 +22,15 @@ router.post('/login', (req, res) => {
 
   //db에서 회원 검증
   const user = isValidateLogin(db, userId, hash);
-  if (user) return res.json({ message: `${user.nickName} ㅎㅇㅎㅇ` });
+  if (user) {
+    return res //쿠키 전송
+      .cookie('name', user.nickName, {
+        //쿠키 유효기간 5분
+        expires: new Date(Date.now() + 1000 * 60 * 5),
+        httpOnly: true,
+      })
+      .json({ message: `${user.nickName} ㅎㅇㅎㅇ` });
+  }
 
   res.status(404).send('일치하는 정보가 없습니다');
 });
