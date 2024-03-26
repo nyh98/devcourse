@@ -6,13 +6,11 @@ async function joinUser(userId, hashPwd, nickName) {
 
   try {
     conn = await fetchConn();
-
     await conn.query('INSERT INTO users (id,pwd,nick_name) VALUES(?, ?, ?)', [
       userId,
       hashPwd,
       nickName,
     ]);
-
     return true;
   } catch (e) {
     throw e;
