@@ -10,8 +10,7 @@ db.set(id++, { userId: 'test1', pwd: 'aaa', nickName: '가' });
 //로그인
 router.post('/login', (req, res) => {
   const { userId, pwd } = req.body;
-  const cookie = req.cookies;
-  console.log(cookie);
+
   //데이터 검증
   if (!userId || !pwd) {
     return res.status(400).send('정보를 정확히 입력하세요');
