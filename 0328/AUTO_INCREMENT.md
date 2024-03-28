@@ -37,7 +37,7 @@ CREATE TABLE example (
 
 AUTO_INCREMENT가 적용된 테이블에 5개의 행을 INSERT 하게되면 각각 AUTO_INCREMENT 값이 지정된다(주민번호 느낌)
 
-만약 2 번의 INSERT가 실패하고 3번의 INSERT가 성공했을떄 AUTO_INCREMENT 값은 1 과 3이 있을것이다
+만약 2 번의 AUTO_INCREMENT 가 실패하고 3번의 AUTO_INCREMENT 가 성공했을떄 AUTO_INCREMENT 값은 1 과 3이 있을것이다(3개번의 INSERT => 두번째는 실패 => 1번째와 3번째만 성공)
 
 이후 4~5번을 INSERT시 AUTO_INCREMENT값인 2가 없기때문에 AUTO_INCREMENT값을 -1 빼고 저장하게 되면
 
