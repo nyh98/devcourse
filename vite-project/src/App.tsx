@@ -5,9 +5,10 @@ import ListsContainer from './componets/ListContainer/ListsContainer.tsx';
 import { useTypeDispatch, useTypeSelector } from './hooks/redux.ts';
 import EditModal from './componets/EditModal/EditModal.tsx';
 import LoggerModal from './componets/LoggerModal/LoggerModal.tsx';
-import { deleteBoard } from './store/slices/boardsSlice.ts';
+import { deleteBoard, sort } from './store/slices/boardsSlice.ts';
 import { addLog } from './store/slices/loggerSlice.ts';
 import { v4 } from 'uuid';
+import { DragDropContext } from 'react-beautiful-dnd';
 
 function App() {
   const dispatch = useTypeDispatch();
@@ -42,13 +43,36 @@ function App() {
       alert('게시판 1개라 못지움');
     }
   };
+
+  const handleDragEnd = (result: any) => {
+    const { destination, source, draggableId } = result;
+
+    const sourceList = lists.filter(list => list.listId === source.droppableId);
+
+    dispatch(
+      sort({
+        boardIndex: boards.findIndex(board => board.boardId === activeBoardId),
+        droppableStart: source.droppableId,
+        droppableEnd: destination.droppableId,
+        droppableIndexStart: source.index,
+        droppableIndexEnd: destination.index,
+        draggableId,
+      })
+    );
+
+    dispatch(
+      addLog({ logId: v4(), logMessage: `리스트 드래그함`, logAuthor: 'User', logTimestamp: String(Date.now()) })
+    );
+  };
   return (
     <div className={appContainer}>
       {isLoggerOpen ? <LoggerModal setIsLoggerOpen={setIsLoggerOpen} /> : null}
       {modalActive ? <EditModal /> : null}
       <BoardList activeBoardId={activeBoardId} setActiveBoardId={setActiveBoardId} />
       <div className={board}>
-        <ListsContainer lists={lists} boardId={boardId} />
+        <DragDropContext onDragEnd={handleDragEnd}>
+          <ListsContainer lists={lists} boardId={boardId} />
+        </DragDropContext>
       </div>
       <div className={buttons}>
         <button className={deleteBoardbutton} onClick={handleDeleteBoard}>
