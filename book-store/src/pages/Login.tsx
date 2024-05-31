@@ -1,21 +1,22 @@
-import styled from 'styled-components';
 import Title from '../components/common/Title';
 import InputText from '../components/common/InputText';
 import Button from '../components/common/Button';
 import { Link, useNavigate } from 'react-router-dom';
-import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { signup } from '../api/auth.api';
+import { login, signup } from '../api/auth.api';
 import { useAlert } from '../hooks/useAlert';
+import { SigonupStyle } from './Signup';
+import { useAuthStore } from '../store/authStore';
 
 export interface SignupProps {
   email: string;
   password: string;
 }
 
-export default function Signup() {
+export default function Login() {
   const navigate = useNavigate();
   const showAlert = useAlert();
+  const { isLoggedIn, storeLogin, storeLogout } = useAuthStore();
   const {
     register,
     handleSubmit,
@@ -23,14 +24,15 @@ export default function Signup() {
   } = useForm<SignupProps>();
 
   const onSubmit = (data: SignupProps) => {
-    signup(data).then(res => {
-      showAlert('회원가입 완료');
-      navigate('/login');
+    login(data).then(res => {
+      storeLogin(res.token);
+      showAlert('로그인 성공');
+      navigate('/');
     });
   };
   return (
     <>
-      <Title size="large">회원가입</Title>
+      <Title size="large">로그인</Title>
       <SigonupStyle>
         <form onSubmit={handleSubmit(onSubmit)}>
           <fieldset>
@@ -43,7 +45,7 @@ export default function Signup() {
           </fieldset>
           <fieldset>
             <Button type="submit" size="medium" scheme="primary">
-              회원 가입
+              로그인
             </Button>
           </fieldset>
           <div className="info">
@@ -54,29 +56,3 @@ export default function Signup() {
     </>
   );
 }
-
-export const SigonupStyle = styled.div`
-  max-width: ${({ theme }) => theme.layout.width.small};
-  margin: 80px auto;
-
-  fieldset {
-    border: 0;
-    padding: 0 0 8px 0;
-    .error-text {
-      color: red;
-    }
-  }
-
-  input {
-    width: 100%;
-  }
-
-  button {
-    width: 100%;
-  }
-
-  .info {
-    text-align: center;
-    padding: 14px 0 0 0;
-  }
-`;

@@ -6,6 +6,9 @@ import ThemeSwithcer from './components/header/ThemeSwithcer';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import Error from './components/common/Error';
 import Signup from './pages/Signup';
+import ResetPwd from './pages/ResetPwd';
+import Login from './pages/Login';
+import Books from './pages/Books';
 
 const router = createBrowserRouter([
   {
@@ -19,13 +22,33 @@ const router = createBrowserRouter([
   },
   {
     path: '/books',
-    element: <Layout>도서 목록</Layout>,
+    element: (
+      <Layout>
+        <Books />
+      </Layout>
+    ),
   },
   {
     path: '/siginup',
     element: (
       <Layout>
         <Signup />
+      </Layout>
+    ),
+  },
+  {
+    path: '/reset',
+    element: (
+      <Layout>
+        <ResetPwd />
+      </Layout>
+    ),
+  },
+  {
+    path: '/login',
+    element: (
+      <Layout>
+        <Login />
       </Layout>
     ),
   },
