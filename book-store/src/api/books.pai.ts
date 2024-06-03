@@ -15,9 +15,11 @@ interface Res {
   books: Book[];
   pagenation: Pagenation;
 }
-export const fetchBooks = (): Res => {
+export const fetchBooks = (bookId?: string): Res => {
   //   httpClient.get<Res>('/books');
-
+  if (bookId) {
+    return { books: [dummyBook], pagenation: { currentPage: 1, totalCount: LIMIT } };
+  }
   return {
     books: [dummyBook, dummyBook, dummyBook, dummyBook, dummyBook],
     pagenation: { currentPage: 1, totalCount: LIMIT },
