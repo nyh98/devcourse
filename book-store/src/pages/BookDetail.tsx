@@ -1,13 +1,15 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import { fetchBooks } from '../api/books.pai';
 import { getItemSrc } from '../utils/getImgSrc';
 import Title from '../components/common/Title';
-import { Book } from '../models/book.model';
+import { Book, BookReview } from '../models/book.model';
 import { formatNumber } from '../utils/formatNumber';
 import LikeButton from '../components/books/LikeButton';
 import AddToCart from '../components/books/AddToCart';
+import { fetchBookReview } from '../api/review.api';
+import BookReviewItem from '../components/books/BookReviewItem';
 
 const bookInfoDetail = [
   {
@@ -25,7 +27,14 @@ const bookInfoDetail = [
 export default function BookDetail() {
   const { bookId } = useParams();
   const { books } = fetchBooks(bookId);
+  const [reviews, setReviews] = useState<BookReview[]>([]);
   const [book] = books;
+
+  useEffect(() => {
+    fetchBookReview(bookId!).then(data => setReviews(data.data));
+  }, []);
+
+  console.log(reviews);
   return (
     <BookDetailStyle>
       <header className="header">
@@ -59,6 +68,10 @@ export default function BookDetail() {
         <Title size="medium">목차</Title>
         <p className="index">{book.contents}</p>
       </div>
+      <Title size="medium">리뷰</Title>
+      {reviews.map(review => (
+        <BookReviewItem review={review}></BookReviewItem>
+      ))}
     </BookDetailStyle>
   );
 }
